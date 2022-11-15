@@ -13,7 +13,7 @@ class QuestionController extends AbstractController
      */
     public function homepage()
     {
-        return new Response('What a wizardly awesome controller!');
+        return $this->render('question/homepage.html.twig');
     }
 
     /**
@@ -28,7 +28,6 @@ class QuestionController extends AbstractController
         ];
 
         dump($this);
-        dump();
 
         return $this->render('question/show.html.twig', [
             'question'=>ucwords(str_replace('-',' ',$slug)),
