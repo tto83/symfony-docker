@@ -27,6 +27,9 @@ class QuestionController extends AbstractController
           "I think it's better now"
         ];
 
+        dump($this);
+        dump();
+
         return $this->render('question/show.html.twig', [
             'question'=>ucwords(str_replace('-',' ',$slug)),
             'answers'=>$answers
