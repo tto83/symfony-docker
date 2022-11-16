@@ -41,6 +41,8 @@ class QuestionController extends AbstractController
             $this->logger->info('We\'re in debug mode.');
         }
 
+        //throw new \Exception('bad stuff happened');
+
         $answers = [
             'Have you tried to turn it off an on again?',
             'It works for me',
