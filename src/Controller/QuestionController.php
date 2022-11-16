@@ -34,13 +34,12 @@ class QuestionController extends AbstractController
             "I think it's `purrfect`"
         ];
 
-        dump($this);
-
-
         $questionText ='I\'ve been turned into a cat, any thoughts on how to turn back? While I\'m **adorable**, I don\'t really care for cat food.';
         $parsedQuestionText = $cache->get('markdown_'.md5($questionText), function() use ($questionText, $markdownParser) {
             return $markdownParser->transformMarkdown($questionText);
         });
+
+        dd($markdownParser);
 
         return $this->render('question/show.html.twig', [
             'question'=>ucwords(str_replace('-',' ',$slug)),
