@@ -3,12 +3,23 @@
 namespace App\Controller;
 
 use App\Service\MarkdownHelper;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
 class QuestionController extends AbstractController
 {
+
+    private LoggerInterface $logger;
+    private bool $isDebug;
+
+    public function __construct(LoggerInterface $logger, bool $isDebug)
+    {
+        $this->logger = $logger;
+        $this->isDebug = $isDebug;
+    }
+
     /**
      * @Route("/", name="app_homepage")
      */
@@ -26,7 +37,10 @@ class QuestionController extends AbstractController
      */
     public function show($slug, MarkdownHelper $markdownHelper)
     {
-        dump($this->getParameter('cache_adapter'));
+        if ($this->isDebug) {
+            $this->logger->info('We\'re in debug mode.');
+        }
+
         $answers = [
             'Have you tried to turn it off an on again?',
             'It works for me',
